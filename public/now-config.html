@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StrimYT Overlay Config</title>
+    <link rel="stylesheet" href="/static/now-config.css?v=3">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <h1>Now Playing</h1>
+          <p id="status">Listo</p>
+        </div>
+        <form id="saveForm" class="pin-form">
+          <input id="pinInput" type="password" inputmode="numeric" autocomplete="current-password" placeholder="PIN">
+          <button type="submit">Guardar</button>
+        </form>
+      </header>
+
+      <section class="controls">
+        <label>
+          <span>Estilo</span>
+          <select id="style">
+            <option value="liquid">Liquid glass</option>
+            <option value="compact">Compact</option>
+            <option value="minimal">Minimal</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Color</span>
+          <input id="accentColor" type="color">
+        </label>
+
+        <label>
+          <span>Fondo vidrio <output id="opacityValue"></output></span>
+          <input id="opacity" type="range" min="8" max="95" step="1">
+        </label>
+
+        <label>
+          <span>Tinte color <output id="tintValue"></output></span>
+          <input id="tint" type="range" min="0" max="70" step="1">
+        </label>
+
+        <label>
+          <span>Blur <output id="blurValue"></output></span>
+          <input id="blur" type="range" min="0" max="36" step="1">
+        </label>
+
+        <label>
+          <span>Escala <output id="scaleValue"></output></span>
+          <input id="scale" type="range" min="75" max="140" step="1">
+        </label>
+
+        <label class="check-row">
+          <input id="showQueue" type="checkbox">
+          <span>Mostrar cola</span>
+        </label>
+
+        <label class="check-row">
+          <input id="showProgress" type="checkbox">
+          <span>Mostrar progreso</span>
+        </label>
+      </section>
+
+      <section class="preview-panel">
+        <div class="preview-head">
+          <h2>Preview</h2>
+          <a href="/now" target="_blank" rel="noreferrer">Abrir overlay</a>
+        </div>
+        <iframe id="preview" title="Now Playing Preview" src="/now"></iframe>
+      </section>
+    </main>
+
+    <script src="/static/now-config.js?v=3" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StrimYT Queue</title>
+    <link rel="stylesheet" href="/static/queue.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <h1>StrimYT Queue</h1>
+          <p id="status">Bloqueado</p>
+        </div>
+        <form id="pinForm" class="pin-form">
+          <input id="pinInput" name="pin" type="password" inputmode="numeric" autocomplete="current-password" placeholder="PIN">
+          <button type="submit">Entrar</button>
+          <button id="lockButton" type="button">Salir</button>
+        </form>
+      </header>
+
+      <section class="actions">
+        <button id="refreshButton" type="button">Refresh</button>
+        <button id="skipButton" type="button">Skip current</button>
+        <button id="clearButton" type="button">Clear queue</button>
+      </section>
+
+      <section class="current-section">
+        <h2>Ahora</h2>
+        <div id="current" class="current empty">Nada sonando desde la cola del bot</div>
+      </section>
+
+      <section class="queue-section">
+        <div class="section-head">
+          <h2>En cola</h2>
+          <span id="queueCount">0 pendientes</span>
+        </div>
+        <ol id="queueList" class="queue-list"></ol>
+      </section>
+
+      <section class="history-section">
+        <div class="section-head">
+          <h2>Historial</h2>
+          <span id="historyCount">0 recientes</span>
+        </div>
+        <ol id="historyList" class="history-list"></ol>
+      </section>
+    </main>
+
+    <template id="queueItemTemplate">
+      <li class="queue-item" draggable="true">
+        <div class="index"></div>
+        <div class="song">
+          <strong></strong>
+          <span></span>
+        </div>
+        <div class="row-actions">
+          <button type="button" data-action="up">Up</button>
+          <button type="button" data-action="down">Down</button>
+          <button type="button" data-action="remove">Remove</button>
+        </div>
+      </li>
+    </template>
+
+    <template id="historyItemTemplate">
+      <li class="history-item">
+        <strong></strong>
+        <span></span>
+      </li>
+    </template>
+
+    <script src="/static/queue.js" type="module"></script>
+  </body>
+</html>

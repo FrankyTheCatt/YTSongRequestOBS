@@ -1,0 +1,281 @@
+:root {
+  color-scheme: light;
+  font-family: Inter, ui-sans-serif, system-ui, "Segoe UI", Arial, sans-serif;
+  color: #3f2431;
+  background: transparent;
+  --accent: #ff9fca;
+  --glass-alpha: 0.30;
+  --tint-alpha: 0.22;
+  --blur: 28px;
+  --scale: 1;
+  --progress: 0%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+body {
+  display: grid;
+  place-items: end start;
+  padding: 24px;
+}
+
+.now-card {
+  position: relative;
+  width: min(calc(820px * var(--scale)), calc(100vw - 48px));
+  min-height: calc(150px * var(--scale));
+  display: grid;
+  grid-template-columns: calc(122px * var(--scale)) minmax(0, 1fr);
+  gap: calc(18px * var(--scale));
+  align-items: center;
+  padding: calc(14px * var(--scale));
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: calc(26px * var(--scale));
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 244, 250, 0.18)),
+    rgba(255, 255, 255, var(--glass-alpha));
+  box-shadow:
+    0 18px 46px rgba(128, 62, 93, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(var(--blur)) saturate(1.65);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(1.65);
+}
+
+.now-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.82), transparent 30%),
+    radial-gradient(circle at 80% 15%, rgba(255, 198, 222, 0.72), transparent 34%),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.4), transparent 44%),
+    linear-gradient(300deg, var(--accent), transparent 42%);
+  opacity: var(--tint-alpha);
+  pointer-events: none;
+}
+
+.now-card::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.48),
+    inset 0 0 44px rgba(255, 225, 238, 0.18);
+  pointer-events: none;
+}
+
+.cover-wrap {
+  position: relative;
+  width: calc(122px * var(--scale));
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  border-radius: calc(22px * var(--scale));
+  background: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 12px 28px rgba(157, 74, 113, 0.16);
+}
+
+.cover {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.cover[hidden],
+.cover-fallback[hidden] {
+  display: none;
+}
+
+.cover-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: rgba(122, 54, 85, 0.78);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(255, 222, 236, 0.34));
+  font-size: calc(52px * var(--scale));
+  font-weight: 900;
+}
+
+.track {
+  min-width: 0;
+  display: grid;
+  gap: calc(8px * var(--scale));
+}
+
+.eyebrow,
+.time-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  min-width: 0;
+  color: rgba(92, 50, 70, 0.72);
+  font-size: calc(14px * var(--scale));
+  font-weight: 760;
+  letter-spacing: 0;
+}
+
+.eyebrow span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+h1,
+p {
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: 0;
+}
+
+h1 {
+  color: #432435;
+  font-size: calc(38px * var(--scale));
+  font-weight: 880;
+  line-height: 1.02;
+  text-shadow: 0 1px 14px rgba(255, 255, 255, 0.58);
+}
+
+p {
+  color: rgba(86, 48, 66, 0.78);
+  font-size: calc(19px * var(--scale));
+  font-weight: 650;
+  text-shadow: 0 1px 12px rgba(255, 255, 255, 0.5);
+}
+
+.progress-wrap {
+  display: grid;
+  gap: calc(7px * var(--scale));
+}
+
+.progress-line {
+  height: calc(8px * var(--scale));
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(114, 58, 84, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.34);
+}
+
+.progress-fill {
+  width: var(--progress);
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ffffff, var(--accent));
+  box-shadow: 0 0 18px rgba(255, 159, 202, 0.38);
+  transition: width 180ms linear;
+}
+
+.time-row {
+  font-size: calc(13px * var(--scale));
+  font-weight: 700;
+}
+
+.is-empty {
+  opacity: 0.72;
+}
+
+.is-empty .progress-wrap {
+  opacity: 0;
+}
+
+.style-compact {
+  grid-template-columns: calc(90px * var(--scale)) minmax(0, 1fr);
+  width: min(calc(660px * var(--scale)), calc(100vw - 48px));
+  min-height: calc(116px * var(--scale));
+  border-radius: calc(18px * var(--scale));
+}
+
+.style-compact .cover-wrap {
+  width: calc(90px * var(--scale));
+  border-radius: calc(14px * var(--scale));
+}
+
+.style-compact h1 {
+  font-size: calc(30px * var(--scale));
+}
+
+.style-compact p {
+  font-size: calc(16px * var(--scale));
+}
+
+.style-minimal {
+  grid-template-columns: minmax(0, 1fr);
+  width: min(calc(680px * var(--scale)), calc(100vw - 48px));
+  min-height: auto;
+  padding: calc(16px * var(--scale)) calc(18px * var(--scale));
+  border-radius: calc(16px * var(--scale));
+  background: rgba(255, 255, 255, var(--glass-alpha));
+}
+
+.style-minimal .cover-wrap {
+  display: none;
+}
+
+.style-minimal h1 {
+  font-size: calc(34px * var(--scale));
+}
+
+.hide-queue #queueText,
+.hide-progress .progress-wrap {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 12px;
+  }
+
+  .now-card,
+  .style-compact,
+  .style-minimal {
+    width: calc(100vw - 24px);
+    grid-template-columns: calc(82px * var(--scale)) minmax(0, 1fr);
+    min-height: calc(108px * var(--scale));
+    gap: 12px;
+    border-radius: 18px;
+  }
+
+  .style-minimal {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cover-wrap,
+  .style-compact .cover-wrap {
+    width: calc(82px * var(--scale));
+    border-radius: 14px;
+  }
+
+  h1,
+  .style-compact h1,
+  .style-minimal h1 {
+    font-size: calc(25px * var(--scale));
+  }
+
+  p {
+    font-size: calc(15px * var(--scale));
+  }
+
+  .eyebrow,
+  .time-row {
+    font-size: calc(12px * var(--scale));
+  }
+}

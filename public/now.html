@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StrimYT Now Playing</title>
+    <link rel="stylesheet" href="/static/now.css?v=3">
+  </head>
+  <body>
+    <main id="card" class="now-card style-liquid is-empty" aria-live="polite">
+      <section class="cover-wrap">
+        <img id="cover" class="cover" alt="">
+        <div id="coverFallback" class="cover-fallback">♪</div>
+      </section>
+
+      <section class="track">
+        <div class="eyebrow">
+          <span id="stateText">Ahora suena</span>
+          <span id="queueText">0 en cola</span>
+        </div>
+
+        <h1 id="title">Nada por ahora</h1>
+        <p id="artist">Esperando !song</p>
+
+        <div id="progressWrap" class="progress-wrap">
+          <div class="progress-line">
+            <div id="progressFill" class="progress-fill"></div>
+          </div>
+          <div class="time-row">
+            <span id="elapsed">0:00</span>
+            <span id="duration">0:00</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/static/now.js?v=3" type="module"></script>
+  </body>
+</html>

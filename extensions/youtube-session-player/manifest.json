@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "StrimYT YouTube Session Player",
+  "version": "1.0.0",
+  "description": "Controla una pestana normal de YouTube con la cola local de StrimYT.",
+  "host_permissions": [
+    "http://127.0.0.1:8787/*",
+    "http://localhost:8787/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.youtube.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

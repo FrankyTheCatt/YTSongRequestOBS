@@ -1,0 +1,25 @@
+{
+  "name": "strimyt-song-bot",
+  "version": "1.0.0",
+  "description": "Bot de Twitch para agregar solicitudes de canciones a una playlist de YouTube/YT Music.",
+  "type": "module",
+  "main": "src/bot.js",
+  "scripts": {
+    "auth": "node scripts/youtube-auth.js",
+    "start": "node src/bot.js",
+    "check": "node src/check-config.js"
+  },
+  "keywords": [
+    "twitch",
+    "youtube",
+    "music",
+    "song-request"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^5.2.1",
+    "googleapis": "^173.0.0",
+    "tmi.js": "^1.8.5"
+  }
+}
