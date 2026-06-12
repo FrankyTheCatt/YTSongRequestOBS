@@ -195,4 +195,42 @@ Con el PIN puedes:
 npm run auth
 npm run check
 npm start
+npm run build:release
 ```
+
+## Release Portable Para Amigos
+
+Si quieres compartirlo con alguien que no tiene Node ni npm, genera un ZIP portable para Windows:
+
+```powershell
+npm run build:release
+```
+
+El archivo queda en:
+
+```text
+dist/YTSongRequestOBS-1.0.0-windows.zip
+```
+
+Ese ZIP incluye:
+
+- `runtime/node.exe`
+- `node_modules`
+- `start.bat`
+- `config.bat`
+- `auth-youtube.bat`
+- `check-config.bat`
+- la extensión local
+- el overlay y paneles web
+
+Tus amigos solo deben:
+
+1. Descomprimir el ZIP.
+2. Ejecutar `config.bat`.
+3. Poner sus credenciales en `.env`.
+4. Guardar su `credentials.json` en la carpeta.
+5. Ejecutar `auth-youtube.bat`.
+6. Ejecutar `check-config.bat`.
+7. Ejecutar `start.bat`.
+
+No compartas tu `.env`, `credentials.json` ni `token.json`. Cada persona debe usar sus propias cuentas.
