@@ -66,7 +66,7 @@ if (-not (Test-Path $NodeExtractDir)) {
 }
 
 New-Item -ItemType Directory -Force -Path (Join-Path $StageDir "runtime") | Out-Null
-Copy-Item (Join-Path $NodeExtractDir "node.exe") (Join-Path $StageDir "runtime\node.exe") -Force
+Copy-Item (Join-Path $NodeExtractDir "*") (Join-Path $StageDir "runtime") -Recurse -Force
 
 Copy-ProjectItem ".env.example"
 Copy-ProjectItem "README.md"
@@ -81,38 +81,79 @@ Copy-ProjectItem "mizuki-mizuki-akiyama (1).gif"
 
 @'
 @echo off
+setlocal
 cd /d "%~dp0"
 if not exist ".env" copy ".env.example" ".env" > nul
 notepad ".env"
+endlocal
 '@ | Set-Content -Encoding ASCII (Join-Path $StageDir "config.bat")
 
 @'
 @echo off
+setlocal
 cd /d "%~dp0"
-runtime\node.exe scripts\youtube-auth.js
+set "PATH=%CD%\runtime;%PATH%"
+"%CD%\runtime\node.exe" "%CD%\scripts\youtube-auth.js"
+if errorlevel 1 (
+  echo.
+  echo Error ejecutando auth-youtube.bat
+  echo Revisa que credentials.json exista en esta carpeta.
+)
 pause
+endlocal
 '@ | Set-Content -Encoding ASCII (Join-Path $StageDir "auth-youtube.bat")
 
 @'
 @echo off
+setlocal
 cd /d "%~dp0"
-runtime\node.exe src\check-config.js
+set "PATH=%CD%\runtime;%PATH%"
+"%CD%\runtime\node.exe" "%CD%\src\check-config.js"
+if errorlevel 1 (
+  echo.
+  echo Error ejecutando check-config.bat
+  echo Revisa .env, credentials.json y token.json.
+)
 pause
+endlocal
 '@ | Set-Content -Encoding ASCII (Join-Path $StageDir "check-config.bat")
 
 @'
 @echo off
+setlocal
 cd /d "%~dp0"
-runtime\node.exe src\bot.js
+set "PATH=%CD%\runtime;%PATH%"
+"%CD%\runtime\node.exe" "%CD%\src\bot.js"
+if errorlevel 1 (
+  echo.
+  echo Error ejecutando start.bat
+  echo Revisa .env, credentials.json, token.json y que el puerto 8787 este libre.
+)
 pause
+endlocal
 '@ | Set-Content -Encoding ASCII (Join-Path $StageDir "start.bat")
 
 @'
 @echo off
+setlocal
 start "" "http://127.0.0.1:8787/now"
 start "" "http://127.0.0.1:8787/now-config"
 start "" "http://127.0.0.1:8787/queue"
+endlocal
 '@ | Set-Content -Encoding ASCII (Join-Path $StageDir "open-panels.bat")
+
+@'
+@echo off
+setlocal
+cd /d "%~dp0"
+set "PATH=%CD%\runtime;%PATH%"
+echo Probando runtime portable...
+"%CD%\runtime\node.exe" -v
+echo.
+echo Si ves una version de Node arriba, los .bat pueden ejecutar Node.
+pause
+endlocal
+'@ | Set-Content -Encoding ASCII (Join-Path $StageDir "test-runtime.bat")
 
 @'
 YT Song Request OBS - Portable Windows
@@ -122,11 +163,13 @@ Este ZIP incluye Node.js portable. No necesitas instalar npm ni Node.
 
 Primer uso:
 
-1. Ejecuta config.bat y rellena .env.
-2. Guarda tu credentials.json en esta misma carpeta.
-3. Ejecuta auth-youtube.bat para crear token.json.
-4. Ejecuta check-config.bat.
-5. Ejecuta start.bat.
+1. Extrae el ZIP completo. No lo ejecutes dentro del ZIP.
+2. Ejecuta test-runtime.bat.
+3. Ejecuta config.bat y rellena .env.
+4. Guarda tu credentials.json en esta misma carpeta.
+5. Ejecuta auth-youtube.bat para crear token.json.
+6. Ejecuta check-config.bat.
+7. Ejecuta start.bat.
 
 Links cuando start.bat esta abierto:
 

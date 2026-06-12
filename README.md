@@ -214,8 +214,9 @@ dist/YTSongRequestOBS-1.0.0-windows.zip
 
 Ese ZIP incluye:
 
-- `runtime/node.exe`
+- `runtime/` con Node.js portable completo
 - `node_modules`
+- `test-runtime.bat`
 - `start.bat`
 - `config.bat`
 - `auth-youtube.bat`
@@ -226,11 +227,14 @@ Ese ZIP incluye:
 Tus amigos solo deben:
 
 1. Descomprimir el ZIP.
-2. Ejecutar `config.bat`.
-3. Poner sus credenciales en `.env`.
-4. Guardar su `credentials.json` en la carpeta.
-5. Ejecutar `auth-youtube.bat`.
-6. Ejecutar `check-config.bat`.
-7. Ejecutar `start.bat`.
+2. Ejecutar `test-runtime.bat`.
+3. Ejecutar `config.bat`.
+4. Poner sus credenciales en `.env`.
+5. Guardar su `credentials.json` en la carpeta.
+6. Ejecutar `auth-youtube.bat`.
+7. Ejecutar `check-config.bat`.
+8. Ejecutar `start.bat`.
+
+Importante: hay que extraer el ZIP completo antes de abrir los `.bat`. No los ejecutes desde la vista previa del ZIP de Windows.
 
 No compartas tu `.env`, `credentials.json` ni `token.json`. Cada persona debe usar sus propias cuentas.
